@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 
 Route::resource('articles', ArticleController::class);
 Route::get('/product', [ProductController::class, 'index']);
+Route::match(['get', 'post'], '/product/new', [ProductController::class, 'new']);
 
 
 //Route::get('/articles', [ArticleController::class, 'index']);

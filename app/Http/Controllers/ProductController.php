@@ -13,4 +13,22 @@ class ProductController extends Controller
     return view('product.index', compact('products'));
 }
 
+public function new(Request $request)
+{
+    if ($request->isMethod('post')) {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'priceHt' => 'required|numeric',
+        ]);
+
+        $data['creationDate'] = now();
+        $data['dateUpdate'] = null;
+
+        Product::create($data);
+        return redirect('/product');
+    }
+
+    return view('product.new');
+}
+
 }
