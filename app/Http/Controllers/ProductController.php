@@ -52,5 +52,11 @@ public function edit(Request $request, $id)
     return view('product.edit', compact('product'));
 }
 
+public function delete($id)
+{
+    Product::destroy($id);
+    return redirect('/product');
+}
+
 
 }
