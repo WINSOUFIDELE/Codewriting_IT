@@ -13,6 +13,7 @@ class ProductController extends Controller
     return view('product.index', compact('products'));
 }
 
+//Methode New
 public function new(Request $request)
 {
     if ($request->isMethod('post')) {
@@ -30,5 +31,26 @@ public function new(Request $request)
 
     return view('product.new');
 }
+
+//Methode edite
+public function edit(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+
+    if ($request->isMethod('post')) {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'priceHt' => 'required|numeric',
+        ]);
+
+        $data['dateUpdate'] = now();
+
+        $product->update($data);
+        return redirect('/product');
+    }
+
+    return view('product.edit', compact('product'));
+}
+
 
 }
