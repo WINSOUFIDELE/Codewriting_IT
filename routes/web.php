@@ -7,10 +7,12 @@ Route::get('/', function () {
 });
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ProductController;
 
 //Route::resource('articles', ArticleController::class);
 
 Route::resource('articles', ArticleController::class);
+Route::get('/product', [ProductController::class, 'index']);
 
 
 //Route::get('/articles', [ArticleController::class, 'index']);
